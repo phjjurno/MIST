@@ -47,17 +47,21 @@ const Scene = (() => {
     ctx.drawImage(sharp, -blur * 1.5, -blur * 1.5, w + blur * 3, h + blur * 3);
     ctx.filter = 'none';
 
+    // 1차 밀키 베이스: 뿌연 흰빛 층
+    ctx.fillStyle = 'rgba(218,228,236,0.28)';
+    ctx.fillRect(0, 0, w, h);
+
     const tint = ctx.createLinearGradient(0, 0, 0, h);
-    tint.addColorStop(0, 'rgba(214,224,234,0.46)');
-    tint.addColorStop(0.5, 'rgba(198,210,224,0.4)');
-    tint.addColorStop(1, 'rgba(176,190,206,0.44)');
+    tint.addColorStop(0, 'rgba(214,224,234,0.68)');
+    tint.addColorStop(0.5, 'rgba(198,210,224,0.60)');
+    tint.addColorStop(1, 'rgba(176,190,206,0.64)');
     ctx.fillStyle = tint;
     ctx.fillRect(0, 0, w, h);
 
     for (let i = 0; i < 42; i++) {
       const x = rnd() * w, y = rnd() * h, r = (60 + rnd() * 240) * (w / 1400);
       const g = ctx.createRadialGradient(x, y, 0, x, y, r);
-      const a = 0.03 + rnd() * 0.07;
+      const a = 0.07 + rnd() * 0.13;
       g.addColorStop(0, `rgba(228,236,244,${a})`);
       g.addColorStop(1, 'rgba(228,236,244,0)');
       ctx.fillStyle = g;
