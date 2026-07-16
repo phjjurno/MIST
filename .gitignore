@@ -1,0 +1,15 @@
+# 소스 원본 (배포 불필요)
+_src/
+girl-walk-workflow/
+
+# 시스템
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 에디터
+.vscode/
+.idea/
+
+# 로그
+*.log
