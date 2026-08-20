@@ -104,6 +104,21 @@ const Player = (() => {
     } catch (e) { /* 로컬·오프라인 등 — 폴백 목록 유지 */ }
   }
 
+  /* 유튜브 IFrame API 는 width/height 에 '숫자(px)'를 기대한다.
+     '100%' 같은 문자열을 넘기면 iframe 태그 크기만 100%가 되고 플레이어 내부
+     뷰포트는 엉뚱한 값으로 굳어, 큰 상자 안에 작은 영상이 박히는 모양이 된다.
+     그래서 컨테이너 실측값을 px 로 넘기고, 창 크기가 바뀌면 setSize 로 맞춘다. */
+  function wrapSize() {
+    const wrap = document.querySelector('.yt-wrap');
+    const w = Math.max(120, Math.round((wrap && wrap.clientWidth) || 200));
+    return { w, h: Math.round(w * 9 / 16) };
+  }
+  function fitPlayer() {
+    if (!ytReady || !yt || !yt.setSize) return;
+    const { w, h } = wrapSize();
+    try { yt.setSize(w, h); } catch (e) { /* 아직 준비 전 */ }
+  }
+
   function loadYouTubeAPI() {
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
@@ -111,11 +126,12 @@ const Player = (() => {
     document.head.appendChild(tag);
 
     window.onYouTubeIframeAPIReady = () => {
+      const size = wrapSize();
       yt = new YT.Player('yt-player', {
-        width: '100%', height: '100%',
+        width: size.w, height: size.h,
         playerVars: { rel: 0, playsinline: 1 },
         events: {
-          onReady: () => { ytReady = true; applyVolume(); if (started && !mode) playPulse(); },
+          onReady: () => { ytReady = true; applyVolume(); fitPlayer(); if (started && !mode) playPulse(); },
           onStateChange: (e) => {
             playing = (e.data === YT.PlayerState.PLAYING);
             $play.setAttribute('aria-pressed', String(playing));
@@ -141,6 +157,7 @@ const Player = (() => {
     init() {
       loadYouTubeAPI();
       refreshTracks();
+      addEventListener('resize', fitPlayer);
       $play.addEventListener('click', () => {
         if (!ytReady || !yt) return;
         if (!started) begin();
@@ -158,6 +175,6 @@ const Player = (() => {
     },
 
     /* 첫 상호작용(첫 그리기 · 플레이리스트 열기) 때 BGM 시작 */
-    start() { begin(); },
+    start() { fitPlayer(); begin(); },
   };
 })();
