@@ -162,7 +162,7 @@ img{user-select:none;-webkit-user-drag:none}
 /* ---------- 플레이리스트 팝업 (버튼 위로 뜨는 어두운 반투명 미니 카드) ---------- */
 .player-bar{
   position:absolute;left:50%;bottom:120px;transform:translateY(6px);z-index:16;
-  width:min(320px,86vw);display:flex;align-items:center;gap:10px;
+  width:min(420px,92vw);display:flex;align-items:center;gap:11px;
   background:rgba(18,22,29,.62);
   backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);
   border:1px solid rgba(255,255,255,.14);border-radius:16px;
@@ -184,7 +184,8 @@ img{user-select:none;-webkit-user-drag:none}
 .pl-close:hover{background:rgba(255,255,255,.22)}
 .pl-close:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
 .pl-close svg{width:13px;height:13px}
-.yt-wrap{width:82px;flex:none;border-radius:9px;overflow:hidden;background:#0b0e12}
+.yt-wrap{width:200px;max-width:46%;flex:none;border-radius:10px;overflow:hidden;background:#0b0e12}
+@media (max-width:380px){.yt-wrap{width:150px}}
 #yt-player,.yt-wrap iframe{width:100%;aspect-ratio:16/9;display:block;border:0}
 .np{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;padding-right:16px}
 .np-label{font-size:9.5px;font-weight:700;letter-spacing:.12em;color:#5fc0ff}
