@@ -42,7 +42,7 @@
        (사이트 소유 확인용 코드이기도 합니다. ads.txt 파일도 함께 수정 필요) -->
   <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
 
-  <link rel="stylesheet" href="css/style.css?v=3" />
+  <link rel="stylesheet" href="css/style.css?v=4" />
 </head>
 <body>
 
@@ -78,7 +78,9 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
       </button>
       <div class="yt-wrap">
-        <div id="yt-player" aria-label="유튜브 플레이어"></div>
+        <iframe id="yt-player" title="유튜브 플레이어" src="" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
       </div>
       <div class="np">
         <span class="np-label" id="np-source">PULSEORIGN</span>
@@ -101,6 +103,13 @@
             <input type="range" id="vol" min="0" max="100" step="1" value="30" aria-label="음량 조절" />
           </div>
         </div>
+      </div>
+      <div class="pl-list-wrap">
+        <p class="pl-list-label">
+          PULSEORIGN 롱폼
+          <button class="pl-shuffle" id="btn-shuffle" type="button">🔀 랜덤</button>
+        </p>
+        <div class="pl-presets" id="pl-presets"></div>
       </div>
       <p class="yt-notice" id="yt-notice" hidden>플레이어를 불러오지 못했어요. (미리보기 환경에서는 유튜브가 차단될 수 있어요)</p>
     </aside>
@@ -218,12 +227,12 @@
     </div>
   </div>
 
-  <script src="js/scene.js?v=3"></script>
-  <script src="js/fog.js?v=3"></script>
-  <script src="js/rain.js?v=3"></script>
-  <script src="js/belowrain.js?v=3"></script>
-  <script src="js/player.js?v=3"></script>
-  <script src="js/legal.js?v=3"></script>
-  <script src="js/main.js?v=3"></script>
+  <script src="js/scene.js?v=4"></script>
+  <script src="js/fog.js?v=4"></script>
+  <script src="js/rain.js?v=4"></script>
+  <script src="js/belowrain.js?v=4"></script>
+  <script src="js/player.js?v=4"></script>
+  <script src="js/legal.js?v=4"></script>
+  <script src="js/main.js?v=4"></script>
 </body>
 </html>

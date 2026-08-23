@@ -162,7 +162,7 @@ img{user-select:none;-webkit-user-drag:none}
 /* ---------- 플레이리스트 팝업 (버튼 위로 뜨는 어두운 반투명 미니 카드) ---------- */
 .player-bar{
   position:absolute;left:50%;bottom:120px;transform:translateY(6px);z-index:16;
-  width:min(420px,92vw);display:flex;align-items:center;gap:11px;
+  width:min(420px,92vw);display:flex;flex-wrap:wrap;align-items:center;gap:11px;
   background:rgba(18,22,29,.62);
   backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);
   border:1px solid rgba(255,255,255,.14);border-radius:16px;
@@ -185,6 +185,22 @@ img{user-select:none;-webkit-user-drag:none}
 .pl-close:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
 .pl-close svg{width:13px;height:13px}
 .yt-wrap{width:200px;max-width:46%;flex:none;border-radius:10px;overflow:hidden;background:#0b0e12}
+/* ---------- PULSEORIGN 롱폼 목록 (서트레스의 프리셋 칩과 같은 역할) ---------- */
+.pl-list-wrap{flex:1 0 100%;margin-top:2px}
+.pl-list-label{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  font-size:9.5px;font-weight:700;letter-spacing:.12em;color:#5fc0ff;margin:0 0 6px}
+.pl-shuffle{background:none;border:none;padding:0;cursor:pointer;
+  font-size:10.5px;font-weight:700;letter-spacing:0;color:#bfe4ff}
+.pl-shuffle:hover{color:#fff}
+.pl-shuffle:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.pl-presets{display:flex;flex-direction:column;gap:5px;max-height:132px;overflow-y:auto;padding-right:3px}
+.pl-preset{display:flex;align-items:center;gap:7px;width:100%;text-align:left;cursor:pointer;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:9px;
+  padding:6px 9px;color:#cfdae4;font-size:11px;font-weight:500;line-height:1.3;transition:.15s}
+.pl-preset span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pl-preset .icon{width:13px;height:13px;flex:none;color:#5fc0ff}
+.pl-preset:hover{background:rgba(255,255,255,.13);color:#fff}
+.pl-preset.is-on{background:rgba(95,192,255,.22);border-color:rgba(95,192,255,.5);color:#fff}
 @media (max-width:380px){.yt-wrap{width:150px}}
 #yt-player,.yt-wrap iframe{width:100%;aspect-ratio:16/9;display:block;border:0}
 .np{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;padding-right:16px}
