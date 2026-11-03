@@ -14,7 +14,7 @@
 
   /* 사이트 홍보 정보 — 캡처/공유 이미지에 워터마크로 새겨집니다.
      ※ 실제 배포 도메인으로 url 을 바꿔 주세요. */
-  const SITE = { name: 'MIST : 비밀창문', url: 'mist.ws-qf.web.app' };
+  const SITE = { name: 'MIST : 비밀창문', url: 'mist.ws-qf.com' };
 
   // 기기 픽셀 배율 (고해상도/4K 대응, 성능 위해 2로 제한)
   const DPR = () => Math.min(2, window.devicePixelRatio || 1);

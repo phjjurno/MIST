@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mist.ws-qf.web.app/sitemap.xml
+Sitemap: https://mist.ws-qf.com/sitemap.xml

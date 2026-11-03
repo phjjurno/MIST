@@ -8,7 +8,7 @@
    - 상태(종료)와 음량은 postMessage 로 주고받는다.
 
    재생 규칙: 첫 곡은 반드시 PULSEORIGN. 이후 74% PULSEORIGN, 26% 빗소리·lo-fi.
-   쇼츠 제외: 목록은 /.netlify/functions/pulse-tracks 가 채널 /videos 탭에서
+   쇼츠 제외: 목록은 /api/pulse-tracks 가 채널 /videos 탭에서
    롱폼만 골라 내려준다. (실패 시 아래 내장 롱폼 목록)
    ============================================ */
 const Player = (() => {
@@ -145,7 +145,7 @@ const Player = (() => {
   /* PULSEORIGN 채널 최신 롱폼으로 목록 최신화 (실패 시 내장 목록 유지) */
   async function refreshTracks() {
     try {
-      const res = await fetch('/.netlify/functions/pulse-tracks', { cache: 'no-store' });
+      const res = await fetch('/api/pulse-tracks', { cache: 'no-store' });
       if (!res.ok) return;
       const list = await res.json();
       if (Array.isArray(list) && list.length >= 3 && list.every((t) => t && t.id && t.label)) {

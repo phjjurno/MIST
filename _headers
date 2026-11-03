@@ -1,0 +1,12 @@
+# Cloudflare Pages 헤더 (netlify.toml 에서 이식)
+# HTML 은 Pages 기본값(public, max-age=0, must-revalidate) 그대로.
+# js/css 는 1시간 캐시라 고칠 때마다 index.html 의 ?v=N 을 올릴 것.
+
+/js/*
+  Cache-Control: public, max-age=3600
+
+/css/*
+  Cache-Control: public, max-age=3600
+
+/img/*
+  Cache-Control: public, max-age=604800

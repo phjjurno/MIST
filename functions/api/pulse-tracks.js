@@ -149,14 +149,32 @@ async function collect() {
   return merged.length ? merged : FALLBACK;
 }
 
-exports.handler = async () => {
-  const headers = {
-    'Content-Type': 'application/json; charset=utf-8',
-    'Cache-Control': 'public, max-age=1800, s-maxage=1800'  // 30분 캐시
-  };
-  try {
-    return { statusCode: 200, headers, body: JSON.stringify(await collect()) };
-  } catch (e) {
-    return { statusCode: 200, headers, body: JSON.stringify(FALLBACK) };
-  }
-};
+/* ---------- Cloudflare Pages Function: GET /api/pulse-tracks ----------
+   Netlify는 함수 응답을 CDN이 Cache-Control 대로 캐시해 줬지만,
+   Pages Functions 는 매 요청마다 실행된다. 방문마다 유튜브를 긁으면
+   차단당할 수 있으니 Cache API 로 30분간 엣지에 보관한다. */
+const CACHE_SECONDS = 1800;
+
+function json(list) {
+  return new Response(JSON.stringify(list), {
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Cache-Control': `public, max-age=${CACHE_SECONDS}`
+    }
+  });
+}
+
+export async function onRequestGet(context) {
+  const cache = caches.default;
+  const key = new Request(new URL('/api/pulse-tracks', context.request.url).toString());
+
+  const hit = await cache.match(key);
+  if (hit) return hit;
+
+  let list;
+  try { list = await collect(); } catch (e) { list = FALLBACK; }
+
+  const res = json(list);
+  context.waitUntil(cache.put(key, res.clone()));
+  return res;
+}
