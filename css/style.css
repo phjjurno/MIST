@@ -278,13 +278,6 @@ img{user-select:none;-webkit-user-drag:none}
   .girl-sprite{animation:none}
 }
 
-/* 광고 자리 */
-.ad-slot{
-  max-width:760px;margin:30px auto 0;min-height:110px;
-  display:flex;align-items:center;justify-content:center;
-  border:1.5px dashed rgba(223,231,238,.3);border-radius:16px;background:rgba(255,255,255,.05);
-}
-.ad-label{color:rgba(223,231,238,.65);font-size:12.5px;font-weight:500;letter-spacing:.02em}
 
 /* 법적 푸터 */
 .site-footer{max-width:760px;margin:32px auto 0;text-align:center}
